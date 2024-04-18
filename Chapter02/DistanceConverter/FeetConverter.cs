@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace DistanceConverter {
     internal class FeetConverter {
         //メートルからフィートを求める
-        public double FromMeter(int meter) {
+        public double FromMeter(double meter) {
             return meter / 0.3048;
         }
         //フィートからメートルを求める
-        public double ToMeter(int feet) {
+        public double ToMeter(double feet) {
             return feet * 0.3048;
         }
 
