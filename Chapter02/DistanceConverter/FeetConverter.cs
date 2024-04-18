@@ -11,7 +11,7 @@ namespace DistanceConverter {
             return meter / 0.3048;
         }
         //フィートからメートルを求める
-        public double ToFeet(int feet) {
+        public double ToMeter(int feet) {
             return feet * 0.3048;
         }
 
