@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter01", "Chapter01", "{1BBEB356-C792-400B-B029-5811C3B42088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductSample", "Chapter01\ProductSample\ProductSample.csproj", "{204C60DB-0C49-48BD-9C1C-AD3EF896877A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample_p38", "Chapter01\Sample_p38\Sample_p38.csproj", "{5B413F61-CCAA-4512-98E0-432E725CBE88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter02", "Chapter02", "{6ED46AAE-322C-4909-9E5F-9D3E10D6BC04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "距離換算プログラム", "距離換算プログラム", "{63A71B25-BEF0-45C2-BF10-8D95026B8B72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceConverter", "Chapter02\DistanceConverter\DistanceConverter.csproj", "{CD2309F2-976F-4637-8B16-C00A0FDE0C78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{204C60DB-0C49-48BD-9C1C-AD3EF896877A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204C60DB-0C49-48BD-9C1C-AD3EF896877A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204C60DB-0C49-48BD-9C1C-AD3EF896877A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204C60DB-0C49-48BD-9C1C-AD3EF896877A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B413F61-CCAA-4512-98E0-432E725CBE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B413F61-CCAA-4512-98E0-432E725CBE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B413F61-CCAA-4512-98E0-432E725CBE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B413F61-CCAA-4512-98E0-432E725CBE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD2309F2-976F-4637-8B16-C00A0FDE0C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD2309F2-976F-4637-8B16-C00A0FDE0C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD2309F2-976F-4637-8B16-C00A0FDE0C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD2309F2-976F-4637-8B16-C00A0FDE0C78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{204C60DB-0C49-48BD-9C1C-AD3EF896877A} = {1BBEB356-C792-400B-B029-5811C3B42088}
+		{5B413F61-CCAA-4512-98E0-432E725CBE88} = {1BBEB356-C792-400B-B029-5811C3B42088}
+		{63A71B25-BEF0-45C2-BF10-8D95026B8B72} = {6ED46AAE-322C-4909-9E5F-9D3E10D6BC04}
+		{CD2309F2-976F-4637-8B16-C00A0FDE0C78} = {63A71B25-BEF0-45C2-BF10-8D95026B8B72}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C8087DD-F118-4FF7-B72F-85FD77E15625}
+	EndGlobalSection
+EndGlobal
