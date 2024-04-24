@@ -17,11 +17,11 @@ namespace SalesCounter {
 
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
         private static IEnumerable<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();
-            string[] lines = File.ReadAllLines(filePath);
-            foreach (string line in lines) {
-                string[] item = line.Split(',');
-                Sale sale = new Sale {
+            var sales = new List<Sale>();
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines) {
+                var item = line.Split(',');
+                var sale = new Sale {
                     ShopName = item[0],
                     ProductCategory = item[1],
                     Amount = int.Parse(item[2]),
@@ -33,8 +33,8 @@ namespace SalesCounter {
 
         //店舗別の売り上げを求める
         public IDictionary<string, int> GetPerStoreSales() {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            foreach (Sale sale in _sales) {
+            var dict = new Dictionary<string, int>();
+            foreach (var sale in _sales) {
                 if (dict.ContainsKey(sale.ShopName)) {
                     dict[sale.ShopName] += sale.Amount;
                 } else {
