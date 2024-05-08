@@ -31,7 +31,7 @@ namespace BallApp {
                 pb.Size = new Size(50, 50);
                 ball = new SoccerBall(e.X - 25, e.Y - 25);
             } else if (e.Button == MouseButtons.Right) {
-                pb.Size = new Size(20, 20);
+                pb.Size = new Size(25, 25);
                 ball = new TennisBall(e.X - 12, e.Y - 12);
             }
             pb.Image = ball.Image;
