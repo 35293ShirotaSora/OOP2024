@@ -45,6 +45,10 @@
             ResumeLayout(false);
         }
 
+        private void Timer2_Tick1(object sender, EventArgs e) {
+            throw new NotImplementedException();
+        }
+
         #endregion
         private System.Windows.Forms.Timer timer1;
     }
