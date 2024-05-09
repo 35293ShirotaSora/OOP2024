@@ -6,7 +6,7 @@ namespace BallApp {
         Random random = new Random();
 
         public SoccerBall(double xp, double yp)
-            : base(xp, yp, @"Picture\soccer_ball.png"){
+            : base(xp, yp, @"Picture\soccer_ball.png") {
 
             MoveX = random.Next(-25, 25);
             MoveY = random.Next(-25, 25);
@@ -14,7 +14,14 @@ namespace BallApp {
             Count++;
         }
 
-        public override bool Move() {
+        public override bool Move(PictureBox pbBar, PictureBox pbBall) {
+            Rectangle rBar = new Rectangle
+                    (pbBar.Location.X, pbBar.Location.Y, pbBar.Width, pbBar.Height);
+
+            Rectangle rBall = new Rectangle
+                    (pbBall.Location.X, pbBall.Location.Y, pbBall.Width, pbBall.Height);
+
+
             if (PosX > 750 || PosX < 0) {
                 MoveX = -MoveX;
             }
