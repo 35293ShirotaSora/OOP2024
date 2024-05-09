@@ -1,11 +1,16 @@
 ﻿namespace BallApp {
     internal class TennisBall : Obj {
+        public static int Count { get; set; }
+
+        Random random = new Random();
 
         public TennisBall(double xp, double yp)
             : base(xp, yp, @"Picture\tennis_ball.png"){
 
-            MoveX = 10;
-            MoveY = 10;
+            MoveX = random.Next(-25, 25);
+            MoveY = random.Next(-25, 25);
+
+            Count++;
         }
 
         public override bool Move() {
