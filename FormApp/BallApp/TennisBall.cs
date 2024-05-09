@@ -1,4 +1,5 @@
-﻿namespace BallApp {
+﻿
+namespace BallApp {
     internal class TennisBall : Obj {
         public static int Count { get; set; }
 
@@ -23,6 +24,10 @@
             PosX += MoveX;
             PosY += MoveY;
 
+            return true;
+        }
+
+        public override bool Move(Keys direction) {
             return true;
         }
     }
