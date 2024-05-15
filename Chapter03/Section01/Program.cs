@@ -17,10 +17,16 @@ namespace Section01 {
             "Hong Kong",
             };
 
-            IEnumerable<string> query = names.Where(s => s.Contains(" "))
-                                             .Select(s => s.ToUpper());
-            foreach (string s in query) {
-                Console.WriteLine(s);
+            var query = names.Where(s => s.Length <= 5).ToList();
+            foreach (var item in query) {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("-----------");
+
+            names[0] = "Osaka";
+            foreach(var item in query) {
+                Console.WriteLine(item);
             }
         }
     }
