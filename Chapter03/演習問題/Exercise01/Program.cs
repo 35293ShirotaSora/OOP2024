@@ -11,7 +11,7 @@ namespace Exercise01 {
 
             // 3.1.1
             Exercise1_1(numbers);
-            Console.WriteLine();
+            Console.WriteLine("-----");
 
             // 3.1.2
             Exercise1_2(numbers);
@@ -42,7 +42,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            numbers.Select(n => n * 2).ToList().ForEach(n => Console.WriteLine(n /))
+            numbers.Select(n => n * 2).ToList().ForEach(n => Console.WriteLine(n));
         }
     }
 }
