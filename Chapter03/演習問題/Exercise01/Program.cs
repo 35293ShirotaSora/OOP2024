@@ -27,7 +27,10 @@ namespace Exercise01 {
 
         private static void Exercise1_1(List<int> numbers) {
             var exists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
-            Console.WriteLine(exists);
+            if (exists)
+                Console.WriteLine("存在しています");
+            else
+                Console.WriteLine("存在していません");
         }
 
         private static void Exercise1_2(List<int> numbers) {
