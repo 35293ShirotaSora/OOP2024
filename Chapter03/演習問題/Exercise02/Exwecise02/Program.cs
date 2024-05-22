@@ -43,7 +43,7 @@ namespace Exwecise02 {
         }
 
         private static void Exercise2_3(List<string> names) {
-            
+                names.Where(s =>s.ToString().Contains('o')).ToList().ForEach(s => Console.WriteLine(s));
         }
 
         private static void Exercise2_4(List<string> names) {
