@@ -32,6 +32,7 @@ namespace Exwecise02 {
                 var line = Console.ReadLine();
                 if (string.IsNullOrEmpty(line))
                     break;
+
                 int index = names.FindIndex(s => s == line);
                 Console.WriteLine(index);
             } while (true);
@@ -47,7 +48,8 @@ namespace Exwecise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
-            
+            var query = names.Where(s => s[0] == 'B').Select(s => s.Length);
+            foreach (var snum in query) Console.WriteLine(snum);
         }
     }
 }
