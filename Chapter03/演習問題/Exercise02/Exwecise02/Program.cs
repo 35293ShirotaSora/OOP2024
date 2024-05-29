@@ -44,12 +44,14 @@ namespace Exwecise02 {
         }
 
         private static void Exercise2_3(List<string> names) {
-            names.Where(s =>s.ToString().Contains('o')).ToList().ForEach(s => Console.WriteLine(s));
+            names.Where(s =>s.Contains('o')).ToList().ForEach(s => Console.WriteLine(s));
         }
 
         private static void Exercise2_4(List<string> names) {
-            var query = names.Where(s => s[0] == 'B').Select(s => s.Length);
-            foreach (var snum in query) Console.WriteLine(snum);
+            var selected = names.Where(s => s[0] == 'B').Select(s => new { s.Length,s});
+            foreach (var obj in selected) {
+                Console.WriteLine(obj.s + "," + obj.Length);
+            }
         }
     }
 }
