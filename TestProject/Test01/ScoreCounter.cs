@@ -27,14 +27,14 @@ namespace Test01 {
             return scores;
         }
 
-        //メソッドの概要：学生別の点数を求める
+        //メソッドの概要：科目別の点数を求める
         public IDictionary<string, int> GetPerStudentScore() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _score) {
-                if (dict.ContainsKey(sale.Name)) {
-                    dict[sale.Name] += sale.Score;
+                if (dict.ContainsKey(sale.Subject)) {
+                    dict[sale.Subject] += sale.Score;
                 } else {
-                    dict[sale.Name] = sale.Score;
+                    dict[sale.Subject] = sale.Score;
                 }
             }
             return dict;
