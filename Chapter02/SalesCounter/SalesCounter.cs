@@ -17,11 +17,11 @@ namespace SalesCounter {
 
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
         private static IEnumerable<Sale> ReadSales(string filePath) {
-            var sales = new List<Sale>();
-            var lines = File.ReadAllLines(filePath);
+            List<Sale> sales = new List<Sale>();
+            string[] lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
-                var item = line.Split(',');
-                var sale = new Sale {
+                string[] item = line.Split(',');
+                Sale sale = new Sale {
                     ShopName = item[0],
                     ProductCategory = item[1],
                     Amount = int.Parse(item[2]),
