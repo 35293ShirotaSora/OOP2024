@@ -97,18 +97,15 @@ namespace Test02 {
         //　　　　出力結果【30.2才】
         private static void Exercise05(List<Person> persons) {
             var avgAge = persons.Average(x => x.Age);
-            foreach (var x in ) {
-
-            }
-
+            Console.WriteLine(avgAge);
         }
 
         //問題６　身長170cm以上の体重平均を表示
         //　　　　出力結果【72.25kg】
         private static void Exercise06(List<Person> persons) {
-
-
-
+            var Height = persons.Where(x => x.Height>=170).ToList();
+            var avgWeight = Height.Average(x => x.Weight);
+            Console.WriteLine(avgWeight);
         }
 
         //問題７　体重70Kg以下の人を全て表示（名前と体重）
