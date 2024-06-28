@@ -31,7 +31,7 @@
             label5 = new Label();
             label6 = new Label();
             cbAuter = new ComboBox();
-            groupBox1 = new GroupBox();
+            GroupBox = new GroupBox();
             rbOther = new RadioButton();
             rbImport = new RadioButton();
             rbSubaru = new RadioButton();
@@ -50,7 +50,7 @@
             btDeleteReport = new Button();
             label7 = new Label();
             dgvCarReport = new DataGridView();
-            groupBox1.SuspendLayout();
+            GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
             SuspendLayout();
@@ -133,20 +133,19 @@
             cbAuter.Size = new Size(296, 29);
             cbAuter.TabIndex = 7;
             // 
-            // groupBox1
+            // GroupBox
             // 
-            groupBox1.Controls.Add(rbOther);
-            groupBox1.Controls.Add(rbImport);
-            groupBox1.Controls.Add(rbSubaru);
-            groupBox1.Controls.Add(rbHonda);
-            groupBox1.Controls.Add(rbNissan);
-            groupBox1.Controls.Add(rbToyota);
-            groupBox1.Location = new Point(80, 104);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(368, 37);
-            groupBox1.TabIndex = 8;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            GroupBox.Controls.Add(rbOther);
+            GroupBox.Controls.Add(rbImport);
+            GroupBox.Controls.Add(rbSubaru);
+            GroupBox.Controls.Add(rbHonda);
+            GroupBox.Controls.Add(rbNissan);
+            GroupBox.Controls.Add(rbToyota);
+            GroupBox.Location = new Point(80, 104);
+            GroupBox.Name = "GroupBox";
+            GroupBox.Size = new Size(368, 37);
+            GroupBox.TabIndex = 8;
+            GroupBox.TabStop = false;
             // 
             // rbOther
             // 
@@ -348,7 +347,7 @@
             Controls.Add(btReportOpen);
             Controls.Add(tbReport);
             Controls.Add(cbCarName);
-            Controls.Add(groupBox1);
+            Controls.Add(GroupBox);
             Controls.Add(cbAuter);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -359,9 +358,8 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "試乗レポート管理システム";
-            Load += Form1_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            GroupBox.ResumeLayout(false);
+            GroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
             ResumeLayout(false);
@@ -378,7 +376,7 @@
         private Label label5;
         private Label label6;
         private ComboBox cbAuter;
-        private GroupBox groupBox1;
+        private GroupBox GroupBox;
         private RadioButton rbToyota;
         private ComboBox cbCarName;
         private RadioButton rbImport;

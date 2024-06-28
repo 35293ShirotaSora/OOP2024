@@ -11,7 +11,7 @@ namespace Exercise02 {
             Console.Write("数列:");
             var s1 = Console.ReadLine();
             var n1 = int.Parse(s1);
-            Console.WriteLine(int.TryParse(n1));
+            Console.WriteLine();
         }
     }
 }

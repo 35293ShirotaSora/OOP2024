@@ -15,13 +15,32 @@ namespace CarReportSystem {
         private void btAddReport_Click(object sender, EventArgs e) {
             CarReport carReport = new CarReport() {
                 Date = dtpDate.Value,
+                Auther = cbAuter.Text,
+                Maker = GetRadioButtonMaker(),
+                CarName = cbCarName.Text,
+                Report = tbReport.Text,
+                Picture = pbPicture.Image,
             };
+
             listCarReports.Add(carReport);
 
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
+        //選択されているメーカー名を列挙型で返す
+        private CarReport.MakerGroup GetRadioButtonMaker() {
+            if (rbToyota.Checked == true) 
+                return CarReport.MakerGroup.トヨタ;
+            if (rbNissan.Checked == true)
+                return CarReport.MakerGroup.日産;
+            if (rbHonda.Checked == true)
+                return CarReport.MakerGroup.ホンダ;
+            if (rbSubaru.Checked == true)
+                return CarReport.MakerGroup.スバル;
+            if (rbImport.Checked == true)
+                return CarReport.MakerGroup.輸入車;
+            return CarReport.MakerGroup.その他;
         }
+
+        
     }
 }
