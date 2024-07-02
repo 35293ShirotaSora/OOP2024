@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Exercise01 {
@@ -20,10 +21,15 @@ namespace Exercise01 {
             Console.WriteLine(today1.ToString("yyyy年MM月dd日 HH時mm分ss秒"));
             Console.WriteLine(now + "(" + dayOfWeek + ")");
 
-            //Console.WriteLine(NextDay(today1,DayOfWeek.Monday));
+            //Console.WriteLine(NextDay(today1,DayOfWeek.Friday));
+            var tw = new TimeWatch();
+            tw.Start();
+            Thread.Sleep(1000);
+            TimeSpan duration = tw.Stop();
+            Console.WriteLine("処理時間は{0}ミリ秒でした",duration.TotalMilliseconds);
 
 
-        }
+        } 
 
         //8.2
         public static DateTime NextDay(DateTime date, DayOfWeek dayOfWeek) {
