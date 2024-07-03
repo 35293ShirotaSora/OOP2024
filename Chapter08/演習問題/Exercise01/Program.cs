@@ -22,6 +22,8 @@ namespace Exercise01 {
             Console.WriteLine(now + "(" + dayOfWeek + ")");
 
             //Console.WriteLine(NextDay(today1,DayOfWeek.Friday));
+            Console.WriteLine();
+
             var tw = new TimeWatch();
             tw.Start();
             Thread.Sleep(1000);

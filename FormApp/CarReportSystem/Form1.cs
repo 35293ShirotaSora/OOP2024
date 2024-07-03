@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Metrics;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
@@ -21,9 +23,24 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
             };
+            
+            if(carReport.Author != string.Empty && carReport.CarName != string.Empty)
+                listCarReports.Add(carReport);
+            setCbAuthor(cbAuthor.Text);
+            setCbCarName(cbCarName.Text);
 
-            listCarReports.Add(carReport);
+        }
 
+        //記録者の履歴をコンボボックスへ登録(重複なし)
+        private void setCbAuthor(string author) {
+            if (!cbAuthor.Items.Contains(author))
+                cbAuthor.Items.Add(author);
+        }
+
+        //車名の履歴をコンボボックスへ登録(重複なし)
+        private void setCbCarName(string carName) {
+            if (!cbCarName.Items.Contains(carName))
+                cbCarName.Items.Add(carName);
         }
 
         //選択されているメーカー名を列挙型で返す
@@ -91,12 +108,19 @@ namespace CarReportSystem {
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
+        //削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
         }
 
+        //修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
-            
+            listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
+            listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioButtonMaker();
+            listCarReports[dgvCarReport.CurrentRow.Index].Report = cbCarName.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
 
             dgvCarReport.Refresh(); 
         }
