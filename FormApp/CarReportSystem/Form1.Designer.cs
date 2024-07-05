@@ -51,9 +51,12 @@
             label7 = new Label();
             dgvCarReport = new DataGridView();
             ofdPicFileOpen = new OpenFileDialog();
+            ssMassageArea = new StatusStrip();
+            tslbMassage = new ToolStripStatusLabel();
             GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
+            ssMassageArea.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -342,11 +345,26 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // ssMassageArea
+            // 
+            ssMassageArea.Items.AddRange(new ToolStripItem[] { tslbMassage });
+            ssMassageArea.Location = new Point(0, 497);
+            ssMassageArea.Name = "ssMassageArea";
+            ssMassageArea.Size = new Size(726, 22);
+            ssMassageArea.TabIndex = 22;
+            ssMassageArea.Text = "statusStrip1";
+            // 
+            // tslbMassage
+            // 
+            tslbMassage.Name = "tslbMassage";
+            tslbMassage.Size = new Size(0, 17);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(726, 499);
+            ClientSize = new Size(726, 519);
+            Controls.Add(ssMassageArea);
             Controls.Add(dgvCarReport);
             Controls.Add(label7);
             Controls.Add(btDeleteReport);
@@ -375,6 +393,8 @@
             GroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
+            ssMassageArea.ResumeLayout(false);
+            ssMassageArea.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -409,5 +429,7 @@
         private Label label7;
         private DataGridView dgvCarReport;
         private OpenFileDialog ofdPicFileOpen;
+        private StatusStrip ssMassageArea;
+        private ToolStripStatusLabel tslbMassage;
     }
 }
