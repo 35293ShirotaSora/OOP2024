@@ -136,6 +136,7 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(296, 29);
             cbAuthor.TabIndex = 7;
+            cbAuthor.TextChanged += cbAuthor_TextChanged;
             // 
             // GroupBox
             // 
@@ -225,6 +226,7 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(296, 29);
             cbCarName.TabIndex = 9;
+            cbCarName.TextChanged += cbAuthor_TextChanged;
             // 
             // tbReport
             // 
@@ -332,6 +334,8 @@
             // 
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
+            dgvCarReport.AllowUserToResizeColumns = false;
+            dgvCarReport.AllowUserToResizeRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCarReport.Location = new Point(80, 354);
             dgvCarReport.Name = "dgvCarReport";

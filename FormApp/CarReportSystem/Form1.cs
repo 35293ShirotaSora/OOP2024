@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Diagnostics.Metrics;
+using System.Drawing.Text;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
@@ -33,7 +34,6 @@ namespace CarReportSystem {
 
             setCbAuthor(cbAuthor.Text);
             setCbCarName(cbCarName.Text);
-            tslbMassage.Text = "";
 
             ClearMethod();
 
@@ -129,7 +129,7 @@ namespace CarReportSystem {
         }
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.Rows.Count == 0)
+            if ((dgvCarReport.Rows.Count == 0)||(!dgvCarReport.CurrentRow.Selected))
                 return;
 
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
@@ -146,6 +146,9 @@ namespace CarReportSystem {
                 tslbMassage.Text = "データが入力されていません";
                 return;
             }
+            if (!dgvCarReport.CurrentRow.Selected) {
+                return;
+            }
 
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
             ClearMethod();
@@ -157,6 +160,10 @@ namespace CarReportSystem {
                 tslbMassage.Text = "データが入力されていません";
                 return;
             }
+            if (!dgvCarReport.CurrentRow.Selected) {
+                return;
+            }
+            
             listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
             listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioButtonMaker();
@@ -164,9 +171,21 @@ namespace CarReportSystem {
             listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
             listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
 
+            if (cbAuthor.Text == string.Empty || cbCarName.Text == string.Empty) {
+                tslbMassage.Text = "記録者、車名を入力してください";
+                return;
+            }
+
             dgvCarReport.Refresh();
+
         }
 
-       
+        private void cbAuthor_TextChanged(object sender, EventArgs e) {
+            tslbMassage.Text = "";
+        }
+
+        private void cbCarName_TextChanged(object sender, EventArgs e) {
+            tslbMassage.Text = "";
+        }
     }
 }
