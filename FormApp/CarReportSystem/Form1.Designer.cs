@@ -62,6 +62,7 @@
             色設定ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             終了ToolStripMenuItem = new ToolStripMenuItem();
+            cdColor = new ColorDialog();
             GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
@@ -245,6 +246,7 @@
             // btPicOpen
             // 
             btPicOpen.BackColor = SystemColors.Info;
+            btPicOpen.FlatStyle = FlatStyle.Flat;
             btPicOpen.Location = new Point(575, 51);
             btPicOpen.Name = "btPicOpen";
             btPicOpen.Size = new Size(61, 24);
@@ -256,6 +258,7 @@
             // btPicDelete
             // 
             btPicDelete.BackColor = Color.FromArgb(255, 192, 192);
+            btPicDelete.FlatStyle = FlatStyle.Flat;
             btPicDelete.Location = new Point(642, 51);
             btPicDelete.Name = "btPicDelete";
             btPicDelete.Size = new Size(61, 24);
@@ -277,6 +280,7 @@
             // btAddReport
             // 
             btAddReport.BackColor = Color.FromArgb(192, 255, 192);
+            btAddReport.FlatStyle = FlatStyle.Flat;
             btAddReport.Font = new Font("Yu Gothic UI", 12F);
             btAddReport.Location = new Point(472, 323);
             btAddReport.Name = "btAddReport";
@@ -289,6 +293,7 @@
             // btModifyReport
             // 
             btModifyReport.BackColor = SystemColors.GradientInactiveCaption;
+            btModifyReport.FlatStyle = FlatStyle.Flat;
             btModifyReport.Font = new Font("Yu Gothic UI", 12F);
             btModifyReport.Location = new Point(555, 323);
             btModifyReport.Name = "btModifyReport";
@@ -302,6 +307,7 @@
             // btDeleteReport
             // 
             btDeleteReport.BackColor = Color.FromArgb(255, 192, 192);
+            btDeleteReport.FlatStyle = FlatStyle.Flat;
             btDeleteReport.Font = new Font("Yu Gothic UI", 12F);
             btDeleteReport.Location = new Point(638, 323);
             btDeleteReport.Name = "btDeleteReport";
@@ -361,13 +367,15 @@
             // 
             // btAllClear
             // 
+            btAllClear.BackColor = SystemColors.ButtonFace;
+            btAllClear.FlatStyle = FlatStyle.Flat;
             btAllClear.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btAllClear.Location = new Point(391, 54);
+            btAllClear.Location = new Point(391, 51);
             btAllClear.Name = "btAllClear";
-            btAllClear.Size = new Size(76, 23);
+            btAllClear.Size = new Size(76, 25);
             btAllClear.TabIndex = 23;
             btAllClear.Text = "項目クリア";
-            btAllClear.UseVisualStyleBackColor = true;
+            btAllClear.UseVisualStyleBackColor = false;
             btAllClear.Click += btAllClear_Click;
             // 
             // menuStrip1
@@ -381,6 +389,7 @@
             // 
             // toolStripMenuItem1
             // 
+            toolStripMenuItem1.BackColor = SystemColors.ControlLight;
             toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { 開くToolStripMenuItem, 保存ToolStripMenuItem, toolStripSeparator1, 色設定ToolStripMenuItem, toolStripSeparator2, 終了ToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(67, 20);
@@ -410,6 +419,7 @@
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
             色設定ToolStripMenuItem.Size = new Size(180, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
+            色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
@@ -455,6 +465,7 @@
             MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             GroupBox.ResumeLayout(false);
             GroupBox.PerformLayout();
@@ -509,5 +520,6 @@
         private ToolStripMenuItem 色設定ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem 終了ToolStripMenuItem;
+        private ColorDialog cdColor;
     }
 }
