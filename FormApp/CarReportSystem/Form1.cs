@@ -1,4 +1,6 @@
+using Microsoft.VisualBasic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
@@ -9,7 +11,7 @@ namespace CarReportSystem {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         //コンストラクタ
         public Form1() {
@@ -136,19 +138,21 @@ namespace CarReportSystem {
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite;
 
             //設定ファイルを逆シリアル化して背景を設定
-            try {
-                using (var reader = XmlReader.Create("setting.xml")) {
-                    var serializer = new XmlSerializer(typeof(Settings));
-                    var settings = serializer.Deserialize(reader) as Settings;
-                    if (settings != null) {
-                        if(settings.MainFormColor  != 0)
-                            BackColor = Color.FromArgb(settings.MainFormColor);
+            if (File.Exists("setting.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormColor);
+                        settings.MainFormColor = BackColor.ToArgb();
                     }
                 }
+                catch (Exception) {
+                    tslbMassage.Text = "色情報ファイルエラー";
+                }
+            } else {
+                tslbMassage.Text = "色情報ファイルがありません";
             }
-            catch (Exception) {
-            }
-            
         }
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
@@ -300,6 +304,11 @@ namespace CarReportSystem {
             catch (Exception) {
                 MessageBox.Show("設定ファイル書き込みエラー");
             }
+        }
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();
         }
     }
 }
