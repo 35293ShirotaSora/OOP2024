@@ -78,36 +78,34 @@ namespace Exercise01 {
             xdoc.Root.Add(element);
 
             xdoc.Save(newfile);*/
-            int choice = 1;
             var xdoc = XDocument.Load(file);
             string name,kanji;
-            int teammembers, origin;
+            int teammembers, origin,choice;
+            List<XElement> xElements = new List<XElement>();
 
-            while (choice == 1) {
-                Console.Write("名称:");
-                name = Console.ReadLine();
-                Console.Write("漢字:");
-                kanji = Console.ReadLine();
-                Console.Write("人数:");
-                teammembers = int.Parse(Console.ReadLine());
-                Console.Write("起源:");
-                origin = int.Parse(Console.ReadLine());
+            while (true) {
+                Console.Write("名称:");   name = Console.ReadLine();
+                Console.Write("漢字:");   kanji = Console.ReadLine();
+                Console.Write("人数:");   teammembers = int.Parse(Console.ReadLine());
+                Console.Write("起源:");   origin = int.Parse(Console.ReadLine());
 
                 Console.WriteLine();
-
-                Console.Write("追加(1)/保存(2)>");
-                choice = int.Parse(Console.ReadLine());
 
                 var element = new XElement("ballsport",
                     new XElement("name", name, new XAttribute("kanji", kanji)),
                     new XElement("teammenbers", teammembers),
                     new XElement("firstplayed", origin)
                 );
-                
-                xdoc.Root.Add(element);
+
+                xElements.Add(element);
+
+                Console.Write("追加(1)/保存(2)>");
+                choice = int.Parse(Console.ReadLine());
+                if (choice == 2)
+                    break;
+                Console.WriteLine();
             }
-            if (choice != 2)
-                Console.WriteLine("指定された数字以外が入力されました");
+            xdoc.Root.Add(xElements);
             xdoc.Save(newfile);
         }
     }
