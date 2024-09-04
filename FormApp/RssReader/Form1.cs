@@ -21,15 +21,21 @@ namespace RssReader {
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
+
                 var xtitles = xdoc.Root.Descendants("item")
-                                       .Elements("title");
+                                       .Select(item => new {
+                                           title = item.Element("title").Value,
+                                           link = item.Element("link").Value,
+                                       });
+
                 foreach (var xtitle in xtitles) {
-                    lbRssTitle.Items.Add(xtitle.Value);
+                    lbRssTitle.Items.Add(xtitle);
                 }
-
-                //webBrowser1.Navigate(tbRssUrl.Text);
-
             }
+        }
+
+        private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+
         }
     }
 }
