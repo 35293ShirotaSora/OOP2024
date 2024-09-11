@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,32 +11,74 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RssReader {
-    public partial class Form1 : Form {
+
+    public partial class Form1 : Form {    
+
+        List<ItemData> items;
+
+
+
         public Form1() {
             InitializeComponent();
         }
 
+
+
         private void btGet_Click(object sender, EventArgs e) {
             using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbRssUrl.Text);
+                var url = wc.OpenRead(cbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
 
-                var xtitles = xdoc.Root.Descendants("item")
-                                       .Select(item => new {
-                                           title = item.Element("title").Value,
-                                           link = item.Element("link").Value,
-                                       });
+                items = xdoc.Root.Descendants("item")
+                                      .Select(item => new ItemData{
+                                          Title = item.Element("title").Value,
+                                          Link = item.Element("link").Value,
+                                      }).ToList();
 
-                foreach (var xtitle in xtitles) {
-                    lbRssTitle.Items.Add(xtitle);
+                foreach (var item in items) {
+                    lbRssTitle.Items.Add(item.Title);
                 }
             }
         }
 
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+            if (lbRssTitle.SelectedItem != null) {
+                var selectedTitle = lbRssTitle.SelectedItem.ToString();
+                var selectedItem = items.FirstOrDefault(item => item.Title == selectedTitle);
+                if (selectedItem != null) {
+                    webView21.Source = new Uri(selectedItem.Link);
+                }
+            }
+        }
 
+        private void Form1_Load(object sender, EventArgs e) {
+            List<ItemSet> rssUrl = new List<ItemSet>();
+
+            rssUrl.Add(new ItemSet("https://news.yahoo.co.jp/topics/top-picks?source=rss", "主要" ));
+            rssUrl.Add(new ItemSet("国内", "https://news.yahoo.co.jp/topics/domestic?source=rss"));
+
+            cbRssUrl.DataSource = rssUrl;
+            cbRssUrl.ValueMember = "ItemLink";
+            cbRssUrl.DisplayMember = "ItemName";
+
+        }
+
+    }
+    public class ItemData {
+        public string Title { get; set; }
+        public string Link { get; set; }
+    }
+
+    public class ItemSet {
+        public String ItemName { get; set; }
+        public String ItemLink { get; set; }
+
+        public ItemSet(String n, String l) {
+            ItemName = n;
+            ItemLink = l;
         }
     }
 }

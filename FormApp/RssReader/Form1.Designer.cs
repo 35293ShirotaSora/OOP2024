@@ -23,23 +23,20 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
-            this.tbRssUrl = new System.Windows.Forms.TextBox();
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
-            this.webView1 = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
-            ((System.ComponentModel.ISupportInitialize)(this.webView1)).BeginInit();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.cbRssUrl = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbRssFavorite = new System.Windows.Forms.TextBox();
+            this.btRssInpt = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tbRssUrl
-            // 
-            this.tbRssUrl.Location = new System.Drawing.Point(22, 12);
-            this.tbRssUrl.Name = "tbRssUrl";
-            this.tbRssUrl.Size = new System.Drawing.Size(588, 19);
-            this.tbRssUrl.TabIndex = 0;
             // 
             // btGet
             // 
-            this.btGet.Location = new System.Drawing.Point(616, 10);
+            this.btGet.Location = new System.Drawing.Point(581, 8);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(75, 23);
             this.btGet.TabIndex = 1;
@@ -51,43 +48,96 @@
             // 
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
-            this.lbRssTitle.Location = new System.Drawing.Point(22, 45);
+            this.lbRssTitle.Location = new System.Drawing.Point(22, 79);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(766, 160);
+            this.lbRssTitle.Size = new System.Drawing.Size(766, 136);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
-            // webView1
+            // webView21
             // 
-            this.webView1.Location = new System.Drawing.Point(22, 210);
-            this.webView1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webView1.Name = "webView1";
-            this.webView1.Size = new System.Drawing.Size(766, 417);
-            this.webView1.TabIndex = 3;
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(22, 221);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(766, 406);
+            this.webView21.TabIndex = 3;
+            this.webView21.ZoomFactor = 1D;
+            // 
+            // cbRssUrl
+            // 
+            this.cbRssUrl.FormattingEnabled = true;
+            this.cbRssUrl.Location = new System.Drawing.Point(156, 10);
+            this.cbRssUrl.Name = "cbRssUrl";
+            this.cbRssUrl.Size = new System.Drawing.Size(419, 20);
+            this.cbRssUrl.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "ニュースまたはTopicURL：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "お気に入り登録：";
+            // 
+            // tbRssFavorite
+            // 
+            this.tbRssFavorite.Location = new System.Drawing.Point(156, 44);
+            this.tbRssFavorite.Name = "tbRssFavorite";
+            this.tbRssFavorite.Size = new System.Drawing.Size(272, 19);
+            this.tbRssFavorite.TabIndex = 7;
+            // 
+            // btRssInpt
+            // 
+            this.btRssInpt.Location = new System.Drawing.Point(434, 42);
+            this.btRssInpt.Name = "btRssInpt";
+            this.btRssInpt.Size = new System.Drawing.Size(75, 23);
+            this.btRssInpt.TabIndex = 8;
+            this.btRssInpt.Text = "登録";
+            this.btRssInpt.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 639);
-            this.Controls.Add(this.webView1);
+            this.Controls.Add(this.btRssInpt);
+            this.Controls.Add(this.tbRssFavorite);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbRssUrl);
+            this.Controls.Add(this.webView21);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
-            this.Controls.Add(this.tbRssUrl);
             this.Name = "Form1";
             this.Text = "From1";
-            ((System.ComponentModel.ISupportInitialize)(this.webView1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbRssUrl;
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
-        private Microsoft.Toolkit.Forms.UI.Controls.WebView webView1;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private System.Windows.Forms.ComboBox cbRssUrl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbRssFavorite;
+        private System.Windows.Forms.Button btRssInpt;
     }
 }
 
