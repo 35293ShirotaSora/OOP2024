@@ -72,7 +72,6 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="Moduls\Author.cs" />
-    <Compile Include="Moduls\Autohr.cs" />
     <Compile Include="Moduls\BooksDbContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

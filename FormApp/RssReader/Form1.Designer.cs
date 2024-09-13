@@ -122,7 +122,6 @@
             this.Controls.Add(this.btGet);
             this.Name = "Form1";
             this.Text = "From1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

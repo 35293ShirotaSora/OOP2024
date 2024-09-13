@@ -15,7 +15,7 @@ namespace SampleEntityFramework.Moduls {
         }
 
         public DbSet<Book> Books { get; set; }
-        public DbSet<Autohr> Autohrs { get; set; } 
+        public DbSet<Author> Authors { get; set; } 
     }
 
         // モデルに含めるエンティティ型ごとに DbSet を追加します。Code First モデルの構成および使用の
@@ -24,9 +24,8 @@ namespace SampleEntityFramework.Moduls {
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }
 
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
-}
+//public class MyEntity
+//{
+//    public int Id { get; set; }
+//    public string Name { get; set; }
+//}

@@ -23,6 +23,18 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
+
+            var rssDict = new Dictionary<string, string> {
+                { "国内", "https://news.yahoo.co.jp/rss/topics/domestic.xml" },
+                { "国際", "https://news.yahoo.co.jp/rss/topics/world.xml" },
+                { "経済", "https://news.yahoo.co.jp/rss/topics/business.xml" },
+                { "エンタメ", "https://news.yahoo.co.jp/rss/topics/entertainment.xml" },
+                { "スポーツ", "https://news.yahoo.co.jp/rss/topics/sports.xml" },
+                { "IT", "https://news.yahoo.co.jp/rss/topics/it.xml" },
+                { "科学", "https://news.yahoo.co.jp/rss/topics/science.xml" },
+                { "地域", "https://news.yahoo.co.jp/rss/topics/local.xml" },
+            };
+            cbRssUrl.Items.AddRange(rssDict.Keys);
         }
 
 
@@ -52,18 +64,6 @@ namespace RssReader {
                     webView21.Source = new Uri(selectedItem.Link);
                 }
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e) {
-            List<ItemSet> rssUrl = new List<ItemSet>();
-
-            rssUrl.Add(new ItemSet("https://news.yahoo.co.jp/topics/top-picks?source=rss", "主要" ));
-            rssUrl.Add(new ItemSet("国内", "https://news.yahoo.co.jp/topics/domestic?source=rss"));
-
-            cbRssUrl.DataSource = rssUrl;
-            cbRssUrl.ValueMember = "ItemLink";
-            cbRssUrl.DisplayMember = "ItemName";
-
         }
 
     }
