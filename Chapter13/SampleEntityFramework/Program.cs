@@ -1,6 +1,7 @@
 ﻿using SampleEntityFramework.Moduls;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,50 @@ namespace SampleEntityFramework {
             //AddBooks2();
             //DeleteBook();
             //DisplayAllBooks();
-            DisplayAllBooks2();
+            //DisplayAllBooks2();
+
+            Console.WriteLine();
+            Console.WriteLine("#1.3");
+            DisplayAllBooks3();
+
+            Console.WriteLine();
+            Console.WriteLine("#1.4");
+            Exercise1_4();
+
+            Console.WriteLine();
+            Console.WriteLine("#1.5");
+            Exercise1_5();
+
+            Console.ReadLine();
+        }
+
+        private static void Exercise1_4() {
+            using (var db = new BooksDbContext()) {
+                var books = db.Books.OrderBy(b => b.PublishedYear)
+                                    .Take(3)
+                                    .ToList();
+                foreach (var book in books) {
+                    Console.WriteLine($"{book.Title} {book.Author.Name}");
+                }
+            }
+        }
+
+        private static void Exercise1_5() {
+            using (var db = new BooksDbContext()) {
+                var authors = db.Authors.OrderByDescending(a => a.Birthday)
+                                        .ToList();
+                foreach (var author in authors) {
+                    Console.WriteLine("{0}",author.Name);
+                    foreach (var book in author.Books) {
+                        Console.WriteLine(" {0} {1}", book.Title, book.PublishedYear);
+                    }
+                }
+                /*var books = db.Books.OrderByDescending(b => b.Author.Birthday)
+                                    .ToList();
+                foreach (var book in books) {
+                    Console.WriteLine($"{book.Author.Name} {book.Title} {book.PublishedYear}");
+                }*/
+            }
         }
 
         //データの削除
@@ -91,6 +135,18 @@ namespace SampleEntityFramework {
                 }
             }
             
+        }
+
+        static void DisplayAllBooks3() {
+            using (var db = new BooksDbContext()) {
+                var book = db.Books
+                             .Where(b => b.Title.Length == 
+                                db.Books.Max(x => x.Title.Length))
+                                        .ToList();
+                foreach (var item in book) {
+                    Console.WriteLine(item.Title);
+                }   
+            }
         }
 
         //データの取得
