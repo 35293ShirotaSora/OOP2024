@@ -30,7 +30,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbRssFavorite = new System.Windows.Forms.TextBox();
-            this.btRssInpt = new System.Windows.Forms.Button();
+            this.btRssRegister = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,21 +98,22 @@
             this.tbRssFavorite.Size = new System.Drawing.Size(272, 19);
             this.tbRssFavorite.TabIndex = 7;
             // 
-            // btRssInpt
+            // btRssRegister
             // 
-            this.btRssInpt.Location = new System.Drawing.Point(434, 42);
-            this.btRssInpt.Name = "btRssInpt";
-            this.btRssInpt.Size = new System.Drawing.Size(75, 23);
-            this.btRssInpt.TabIndex = 8;
-            this.btRssInpt.Text = "登録";
-            this.btRssInpt.UseVisualStyleBackColor = true;
+            this.btRssRegister.Location = new System.Drawing.Point(434, 42);
+            this.btRssRegister.Name = "btRssRegister";
+            this.btRssRegister.Size = new System.Drawing.Size(75, 23);
+            this.btRssRegister.TabIndex = 8;
+            this.btRssRegister.Text = "登録";
+            this.btRssRegister.UseVisualStyleBackColor = true;
+            this.btRssRegister.Click += new System.EventHandler(this.btRssRegister_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 639);
-            this.Controls.Add(this.btRssInpt);
+            this.Controls.Add(this.btRssRegister);
             this.Controls.Add(this.tbRssFavorite);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -122,7 +123,6 @@
             this.Controls.Add(this.btGet);
             this.Name = "Form1";
             this.Text = "From1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -137,7 +137,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbRssFavorite;
-        private System.Windows.Forms.Button btRssInpt;
+        private System.Windows.Forms.Button btRssRegister;
     }
 }
 

@@ -15,8 +15,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RssReader {
 
-    public partial class Form1 : Form {    
+    public partial class Form1 : Form {
 
+        Dictionary<string, string> rssDict;
         List<ItemData> items;
 
 
@@ -24,7 +25,7 @@ namespace RssReader {
         public Form1() {
             InitializeComponent();
 
-            var rssDict = new Dictionary<string, string> {
+            rssDict = new Dictionary<string, string> {
                 { "国内", "https://news.yahoo.co.jp/rss/topics/domestic.xml" },
                 { "国際", "https://news.yahoo.co.jp/rss/topics/world.xml" },
                 { "経済", "https://news.yahoo.co.jp/rss/topics/business.xml" },
@@ -38,21 +39,27 @@ namespace RssReader {
             foreach (var item in rssDict.Keys) {
                 cbRssUrl.Items.Add(item);
             }
-            cbRssUrl.SelectedIndexChanged += CbRssUrl_SelectedIndexChanged;
+            cbRssUrl.SelectedIndexChanged += cbRssUrl_SelectedIndexChanged;
+            btRssRegister.Click += btRssRegister_Click;
         }
 
-        private void CbRssUrl_SelectedIndexChanged(object sender, EventArgs e) {
-            throw new NotImplementedException();
+        private void cbRssUrl_SelectedIndexChanged(object sender, EventArgs e) {
+            lbRssTitle.Items.Clear();
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+            if (cbRssUrl.SelectedItem == null)
+                return;
+
+            string selectedCategory = cbRssUrl.SelectedItem.ToString();
+            string rssUrl = rssDict[selectedCategory];
 
             using (var wc = new WebClient()) {
-                var url = wc.OpenRead(cbRssUrl.Text);
+                var url = wc.OpenRead(rssUrl);
                 var xdoc = XDocument.Load(url);
 
                 items = xdoc.Root.Descendants("item")
-                                      .Select(item => new ItemData{
+                                      .Select(item => new ItemData {
                                           Title = item.Element("title").Value,
                                           Link = item.Element("link").Value,
                                       }).ToList();
@@ -73,22 +80,19 @@ namespace RssReader {
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void btRssRegister_Click(object sender, EventArgs e) {
+            string customTitle = tbRssFavorite.Text; 
+            string currentUrl = webView21.Source.ToString();
 
+            if (!string.IsNullOrEmpty(customTitle) && !string.IsNullOrEmpty(currentUrl)) {
+                cbRssUrl.Items.Add(customTitle);
+                rssDict[customTitle] = currentUrl; 
+                tbRssFavorite.Clear(); 
+            }
         }
     }
     public class ItemData {
         public string Title { get; set; }
         public string Link { get; set; }
-    }
-
-    public class ItemSet {
-        public String ItemName { get; set; }
-        public String ItemLink { get; set; }
-
-        public ItemSet(String n, String l) {
-            ItemName = n;
-            ItemLink = l;
-        }
     }
 }
