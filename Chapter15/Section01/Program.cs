@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            var years = new int[] { 2013, 2016 };
+            var groups = Library.Books
+                .GroupBy(b => b.PublishedYear)
+                .OrderBy(g => g.Key);
 
-            var books = Library.Books
-                .Where(b => years.Contains(b.PublishedYear));
-
-            foreach ( var book in ) {
-                Console.WriteLine(book);
+            foreach ( var g in groups) {
+                Console.WriteLine($"{g.Key}");
             }
             
         }

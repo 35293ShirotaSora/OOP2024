@@ -36,16 +36,18 @@
             // 
             // btGet
             // 
+            this.btGet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btGet.Location = new System.Drawing.Point(581, 8);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(75, 23);
             this.btGet.TabIndex = 1;
             this.btGet.Text = "取得";
-            this.btGet.UseVisualStyleBackColor = true;
+            this.btGet.UseVisualStyleBackColor = false;
             this.btGet.Click += new System.EventHandler(this.btGet_Click);
             // 
             // lbRssTitle
             // 
+            this.lbRssTitle.BackColor = System.Drawing.SystemColors.Info;
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(22, 79);
@@ -67,6 +69,7 @@
             // 
             // cbRssUrl
             // 
+            this.cbRssUrl.BackColor = System.Drawing.SystemColors.Info;
             this.cbRssUrl.FormattingEnabled = true;
             this.cbRssUrl.Location = new System.Drawing.Point(156, 10);
             this.cbRssUrl.Name = "cbRssUrl";
@@ -93,6 +96,7 @@
             // 
             // tbRssFavorite
             // 
+            this.tbRssFavorite.BackColor = System.Drawing.SystemColors.Info;
             this.tbRssFavorite.Location = new System.Drawing.Point(156, 44);
             this.tbRssFavorite.Name = "tbRssFavorite";
             this.tbRssFavorite.Size = new System.Drawing.Size(272, 19);
@@ -100,18 +104,20 @@
             // 
             // btRssRegister
             // 
+            this.btRssRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btRssRegister.Location = new System.Drawing.Point(434, 42);
             this.btRssRegister.Name = "btRssRegister";
             this.btRssRegister.Size = new System.Drawing.Size(75, 23);
             this.btRssRegister.TabIndex = 8;
             this.btRssRegister.Text = "登録";
-            this.btRssRegister.UseVisualStyleBackColor = true;
+            this.btRssRegister.UseVisualStyleBackColor = false;
             this.btRssRegister.Click += new System.EventHandler(this.btRssRegister_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 639);
             this.Controls.Add(this.btRssRegister);
             this.Controls.Add(this.tbRssFavorite);

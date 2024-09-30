@@ -39,8 +39,9 @@ namespace RssReader {
             foreach (var item in rssDict.Keys) {
                 cbRssUrl.Items.Add(item);
             }
+            //btRssRegister.Click += btRssRegister_Click;
             cbRssUrl.SelectedIndexChanged += cbRssUrl_SelectedIndexChanged;
-            btRssRegister.Click += btRssRegister_Click;
+            
         }
 
         private void cbRssUrl_SelectedIndexChanged(object sender, EventArgs e) {
@@ -81,14 +82,20 @@ namespace RssReader {
         }
 
         private void btRssRegister_Click(object sender, EventArgs e) {
-            string customTitle = tbRssFavorite.Text; 
-            string currentUrl = webView21.Source.ToString();
+            btRssRegister.Enabled = false;
 
-            if (!string.IsNullOrEmpty(customTitle) && !string.IsNullOrEmpty(currentUrl)) {
-                cbRssUrl.Items.Add(customTitle);
-                rssDict[customTitle] = currentUrl; 
-                tbRssFavorite.Clear(); 
+            string favoriteTitle = tbRssFavorite.Text.Trim();
+            string selectedUrl = cbRssUrl.Text.ToString();
+
+            if (!string.IsNullOrEmpty(favoriteTitle) && !string.IsNullOrEmpty(selectedUrl)) {
+                cbRssUrl.Items.Add(favoriteTitle);
+                rssDict[favoriteTitle] = selectedUrl; 
+                tbRssFavorite.Clear();
+                MessageBox.Show("登録完了");
+            } else {
+                MessageBox.Show("タイトルとURLの両方を入力してください。");
             }
+            btRssRegister.Enabled = true;
         }
     }
     public class ItemData {
