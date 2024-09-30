@@ -39,6 +39,7 @@ namespace RssReader {
             foreach (var item in rssDict.Keys) {
                 cbRssUrl.Items.Add(item);
             }
+
             //btRssRegister.Click += btRssRegister_Click;
             cbRssUrl.SelectedIndexChanged += cbRssUrl_SelectedIndexChanged;
             
@@ -93,7 +94,7 @@ namespace RssReader {
                 tbRssFavorite.Clear();
                 MessageBox.Show("登録完了");
             } else {
-                MessageBox.Show("タイトルとURLの両方を入力してください。");
+                MessageBox.Show("名称とURLの両方を入力してください。");
             }
             btRssRegister.Enabled = true;
         }
