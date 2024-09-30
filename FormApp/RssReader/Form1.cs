@@ -34,12 +34,19 @@ namespace RssReader {
                 { "科学", "https://news.yahoo.co.jp/rss/topics/science.xml" },
                 { "地域", "https://news.yahoo.co.jp/rss/topics/local.xml" },
             };
-            cbRssUrl.Items.AddRange(rssDict.Keys);
+
+            foreach (var item in rssDict.Keys) {
+                cbRssUrl.Items.Add(item);
+            }
+            cbRssUrl.SelectedIndexChanged += CbRssUrl_SelectedIndexChanged;
         }
 
-
+        private void CbRssUrl_SelectedIndexChanged(object sender, EventArgs e) {
+            throw new NotImplementedException();
+        }
 
         private void btGet_Click(object sender, EventArgs e) {
+
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(cbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
@@ -66,6 +73,9 @@ namespace RssReader {
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
     }
     public class ItemData {
         public string Title { get; set; }
