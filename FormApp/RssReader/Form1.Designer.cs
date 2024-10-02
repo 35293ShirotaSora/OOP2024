@@ -77,7 +77,7 @@
             // 
             this.cbRssUrl.BackColor = System.Drawing.SystemColors.Info;
             this.cbRssUrl.FormattingEnabled = true;
-            this.cbRssUrl.Location = new System.Drawing.Point(156, 10);
+            this.cbRssUrl.Location = new System.Drawing.Point(156, 7);
             this.cbRssUrl.Name = "cbRssUrl";
             this.cbRssUrl.Size = new System.Drawing.Size(419, 20);
             this.cbRssUrl.TabIndex = 4;
