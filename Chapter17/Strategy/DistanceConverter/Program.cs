@@ -12,19 +12,16 @@ namespace DistanceConverter {
                 var from = GetConverter("変換元の単位を入力してください");
                 var to = GetConverter("変換先の単位を入力してください");
                 var distance = GetDistance(from);
-
                 var converter = new DistanceConverter(from, to);
                 var result = converter.Convert(distance);
                 Console.WriteLine($"{distance}{from.UnitName}は、{result:0.000}{to.UnitName}です\n");
             }
-
         }
 
         static double GetDistance(ConverterBase from) {
             double? value = null;
             do {
                 Console.Write($"変換したい距離(単位:{from.UnitName})を入力してください => ");
-
                 var line = Console.ReadLine();
                 double temp;
                 value = double.TryParse(line, out temp) ? (double?)temp : null;
@@ -38,7 +35,6 @@ namespace DistanceConverter {
                 Console.Write(msg + " => ");
                 var unit = Console.ReadLine();
                 converter = ConverterFactory.GetInstance(unit);
-
             }while (converter == null);
             return converter;
         }
