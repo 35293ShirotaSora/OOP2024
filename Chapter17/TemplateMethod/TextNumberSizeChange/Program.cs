@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LineCounter;
+using TextFileProcessor;
+using TextNumberSizeChange;
 
-namespace LineCounter {
+namespace TextNumberSizeChange {
     internal class Program {
         static void Main(string[] args) {
-            TextProcessor.Run<LineCounterProcessor>(args[0]);
+            TextProcessor.Run<ToHankakuProcessor>(args[0]);
         }
     }
 }

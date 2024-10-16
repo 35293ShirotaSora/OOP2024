@@ -4,10 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LineCounter;
+using TextFileProcessor;
 
-namespace LineCounter {
-    class LineCounterProcessor : TextProcessor{
+
+namespace TextNumberSizeChange {
+    class ToHankakuProcessor : TextProcessor{
 
         private int _count;
 

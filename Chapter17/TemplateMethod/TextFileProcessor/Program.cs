@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LineCounter;
 
-namespace LineCounter {
-    internal class Program {
+namespace TextFileProcessor {
+    public class Program {
         static void Main(string[] args) {
-            TextProcessor.Run<LineCounterProcessor>(args[0]);
         }
     }
 }

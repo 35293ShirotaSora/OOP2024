@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7155CC8C-F7D3-425B-BECB-3E0882D32DCE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>LineCounter</RootNamespace>
-    <AssemblyName>LineCounter</AssemblyName>
+    <ProjectGuid>{7B470022-9102-4CC5-B7D6-3316BE3254FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TextFileProcessor</RootNamespace>
+    <AssemblyName>TextFileProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LineCounterProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextProcessor.cs" />
