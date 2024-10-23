@@ -98,6 +98,10 @@ namespace RssReader {
             }
             btRssRegister.Enabled = true;
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
     }
     public class ItemData {
         public string Title { get; set; }

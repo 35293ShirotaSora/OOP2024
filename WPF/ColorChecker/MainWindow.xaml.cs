@@ -42,15 +42,21 @@ namespace ColorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            r = rSlider.Value;
-            g = gSlider.Value;
-            b = bSlider.Value;
 
             var color = new MyColor();
-
             color.Color = Color.FromRgb((byte)r, (byte)g, (byte) b);
+            stockList.Items.Add(color);
+            
+        }
 
-            stockList.Items.Add(color.ToString());
+        public void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (stockList.SelectedItem is MyColor selectedColor) {
+      
+                rValue.Text = selectedColor.Color.R.ToString();
+                gValue.Text = selectedColor.Color.G.ToString();
+                bValue.Text = selectedColor.Color.B.ToString();
+
+            }
         }
     }
 }
