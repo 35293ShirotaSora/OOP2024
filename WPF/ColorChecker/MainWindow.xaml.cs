@@ -18,18 +18,21 @@ namespace ColorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        private List<MyColor> colorList = new List<MyColor>();
 
-        double r;
+        MyColor currentColor = new MyColor();
+        /*double r;
         double g;
-        double b;
+        double b;*/
 
         public MainWindow() {
             InitializeComponent();
+            //αチャンネルの初期値設定
+            currentColor.Color = Color.FromArgb(255, 0, 0, 0);
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            r = (int)rSlider.Value;
+
+            /*r = (int)rSlider.Value;
             rValue.Text = r.ToString();
             g = (int)gSlider.Value;
             gValue.Text = g.ToString();
@@ -38,24 +41,56 @@ namespace ColorChecker {
 
             var newColor = Color.FromRgb((byte)r, (byte)g, (byte)b);
 
-            colorArea.Background = new SolidColorBrush(newColor);
+            colorArea.Background = new SolidColorBrush(newColor);*/
+
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
 
-            var color = new MyColor();
-            color.Color = Color.FromRgb((byte)r, (byte)g, (byte) b);
-            stockList.Items.Add(color);
-            
+            /*var stockColor = new MyColor();
+            stockColor.Color = Color.FromRgb((byte)r, (byte)g, (byte)b);*/
+            /*currentColor = new MyColor {
+                Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value),
+                Name = ""
+            };*/
+
+            if (!stockList.Items.OfType<MyColor>().Any(c => c.Equals(currentColor))) {
+                stockList.Items.Insert(0, currentColor);
+            } else {
+                MessageBox.Show("この色はすでにリストに存在します。");
+            }
         }
 
         public void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (stockList.SelectedItem is MyColor selectedColor) {
+            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
+            gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
+            bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
+
+            /*if (stockList.SelectedItem is MyColor selectedColor) {
       
                 rValue.Text = selectedColor.Color.R.ToString();
                 gValue.Text = selectedColor.Color.G.ToString();
                 bValue.Text = selectedColor.Color.B.ToString();
 
+            }*/
+        }
+
+        private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (colorSelectComboBox.SelectedItem is ComboBoxItem selectedItem) {
+                var colors = selectedItem.Tag.ToString().Split(',').Select(byte.Parse).ToArray();
+                byte r = colors[0];
+                byte g = colors[1];
+                byte b = colors[2];
+
+                rSlider.Value = r;
+                gSlider.Value = g;
+                bSlider.Value = b;
+
+                currentColor.Color = Color.FromRgb(r, g, b);
+                colorArea.Background = new SolidColorBrush(currentColor.Color);
             }
         }
     }
