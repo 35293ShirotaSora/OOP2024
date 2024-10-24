@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,14 @@ namespace ColorChecker {
             InitializeComponent();
             //αチャンネルの初期値設定
             currentColor.Color = Color.FromArgb(255, 0, 0, 0);
+
+            colorSelectComboBox.DataContext = GetColorList();
+
+        }
+
+        private MyColor[] GetColorList() {
+            return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
@@ -79,18 +88,15 @@ namespace ColorChecker {
         }
 
         private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (colorSelectComboBox.SelectedItem is ComboBoxItem selectedItem) {
-                var colors = selectedItem.Tag.ToString().Split(',').Select(byte.Parse).ToArray();
-                byte r = colors[0];
-                byte g = colors[1];
-                byte b = colors[2];
+            if (colorSelectComboBox.SelectedItem is MyColor selectedColor) {
+                colorArea.Background = new SolidColorBrush(selectedColor.Color);
+                rSlider.Value = selectedColor.Color.R;
+                gSlider.Value = selectedColor.Color.G;
+                bSlider.Value = selectedColor.Color.B;
 
-                rSlider.Value = r;
-                gSlider.Value = g;
-                bSlider.Value = b;
-
-                currentColor.Color = Color.FromRgb(r, g, b);
-                colorArea.Background = new SolidColorBrush(currentColor.Color);
+                rValue.Text = selectedColor.Color.R.ToString();
+                gValue.Text = selectedColor.Color.G.ToString();
+                bValue.Text = selectedColor.Color.B.ToString();
             }
         }
     }
