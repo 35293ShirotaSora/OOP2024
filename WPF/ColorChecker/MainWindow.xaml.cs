@@ -53,6 +53,7 @@ namespace ColorChecker {
             colorArea.Background = new SolidColorBrush(newColor);*/
 
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            currentColor.Name = null;
             colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
@@ -65,19 +66,16 @@ namespace ColorChecker {
                 Name = ""
             };*/
 
-            if (!stockList.Items.OfType<MyColor>().Any(c => c.Equals(currentColor))) {
-                stockList.Items.Insert(0, currentColor);
-            } else {
+            if (stockList.Items.Contains(currentColor)) {
                 MessageBox.Show("この色はすでにリストに存在します。");
+            } else {
+                stockList.Items.Insert(0, currentColor);
             }
         }
 
         public void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
-            gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
-            bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
-
+            setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
             /*if (stockList.SelectedItem is MyColor selectedColor) {
       
                 rValue.Text = selectedColor.Color.R.ToString();
@@ -87,13 +85,17 @@ namespace ColorChecker {
             }*/
         }
 
-        private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
- 
-                rSlider.Value = mycolor.Color.R;
-                gSlider.Value = mycolor.Color.G;
-                bSlider.Value = mycolor.Color.B;
+        private void setSliderValue(Color color) {
+            rSlider.Value = color.R;
+            gSlider.Value = color.G;
+            bSlider.Value = color.B;
+        }
 
+        private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var tempcurrentColor = (MyColor)((ComboBox)sender).SelectedItem;
+
+            setSliderValue(tempcurrentColor.Color);
+            currentColor.Name = tempcurrentColor.Name;
         }
     }
 }
