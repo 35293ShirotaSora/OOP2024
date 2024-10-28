@@ -29,15 +29,15 @@
 
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="R" FontSize="30"/>
             <Slider x:Name="rSlider" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="Slider_ValueChanged" SmallChange="1"/>
-            <TextBox Text="{Binding ElementName=rSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0}}" x:Name="rValue" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
+            <TextBox Text="{Binding ElementName=rSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" x:Name="rValue" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
 
             <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="G" FontSize="30" />
             <Slider x:Name="gSlider" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="Slider_ValueChanged" SmallChange="1"/>
-            <TextBox Text="{Binding ElementName=gSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0}}" x:Name="gValue" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
+            <TextBox Text="{Binding ElementName=gSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" x:Name="gValue" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
 
             <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="B" FontSize="30"/>
             <Slider x:Name="bSlider" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="Slider_ValueChanged" SmallChange="1"/>
-            <TextBox Text="{Binding ElementName=bSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0}}" x:Name="bValue" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
+            <TextBox Text="{Binding ElementName=bSlider,Path=Value,Mode=TwoWay, StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" x:Name="bValue" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45" FontSize="20" MaxLength="255"/>
             <ComboBox ItemsSource="{Binding}" SelectedValue="{Binding Color}" x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,0" SelectionChanged="colorSelectComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

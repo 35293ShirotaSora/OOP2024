@@ -11,7 +11,7 @@ namespace ColorChecker {
         public string Name { get; set; }
 
         public override string ToString() {
-            return $"R : {Color.R}, G : {Color.G}, B : {Color.B}";
+            return $"R : {Color.R}  G : {Color.G}  B : {Color.B}";
         }
 
         public override bool Equals(object obj) {

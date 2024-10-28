@@ -88,16 +88,12 @@ namespace ColorChecker {
         }
 
         private void colorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (colorSelectComboBox.SelectedItem is MyColor selectedColor) {
-                colorArea.Background = new SolidColorBrush(selectedColor.Color);
-                rSlider.Value = selectedColor.Color.R;
-                gSlider.Value = selectedColor.Color.G;
-                bSlider.Value = selectedColor.Color.B;
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+ 
+                rSlider.Value = mycolor.Color.R;
+                gSlider.Value = mycolor.Color.G;
+                bSlider.Value = mycolor.Color.B;
 
-                rValue.Text = selectedColor.Color.R.ToString();
-                gValue.Text = selectedColor.Color.G.ToString();
-                bValue.Text = selectedColor.Color.B.ToString();
-            }
         }
     }
 }
