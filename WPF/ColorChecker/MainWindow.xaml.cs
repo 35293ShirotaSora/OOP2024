@@ -30,7 +30,7 @@ namespace ColorChecker {
             //αチャンネルの初期値設定
             currentColor.Color = Color.FromArgb(255, 0, 0, 0);
 
-            colorSelectComboBox.DataContext = GetColorList();
+            DataContext = GetColorList();
 
         }
 
@@ -53,8 +53,10 @@ namespace ColorChecker {
             colorArea.Background = new SolidColorBrush(newColor);*/
 
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
-            currentColor.Name = null;
             colorArea.Background = new SolidColorBrush(currentColor.Color);
+            
+
+            //currentColor.Name = null;
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
@@ -65,6 +67,7 @@ namespace ColorChecker {
                 Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value),
                 Name = ""
             };*/
+            currentColor.Name = GetColorList().Where(c => c.Color.Equals(currentColor.Color)).Select(c => c.Name).FirstOrDefault();
 
             if (stockList.Items.Contains(currentColor)) {
                 MessageBox.Show("この色はすでにリストに存在します。");
@@ -77,9 +80,7 @@ namespace ColorChecker {
             if (stockList.SelectedIndex != -1) {
                 colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
                 setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            } else {
-                colorArea.Background = Brushes.Transparent;
-            }
+            }            
             //.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
             //setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
             /*if (stockList.SelectedItem is MyColor selectedColor) {
@@ -102,6 +103,7 @@ namespace ColorChecker {
 
             setSliderValue(tempcurrentColor.Color);
             currentColor.Name = tempcurrentColor.Name;
+
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e) {
