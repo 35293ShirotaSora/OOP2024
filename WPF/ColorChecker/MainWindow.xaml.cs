@@ -74,8 +74,14 @@ namespace ColorChecker {
         }
 
         public void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            if (stockList.SelectedIndex != -1) {
+                colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+                setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            } else {
+                colorArea.Background = Brushes.Transparent;
+            }
+            //.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            //setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
             /*if (stockList.SelectedItem is MyColor selectedColor) {
       
                 rValue.Text = selectedColor.Color.R.ToString();
@@ -96,6 +102,18 @@ namespace ColorChecker {
 
             setSliderValue(tempcurrentColor.Color);
             currentColor.Name = tempcurrentColor.Name;
+        }
+
+        private void clearButton_Click(object sender, RoutedEventArgs e) {
+            if (stockList.SelectedItem != null) {
+                stockList.Items.Remove(stockList.SelectedItem);
+            } else {
+                MessageBox.Show("削除する色を選択してください。");
+            }
+        }
+
+        private void clearAllButton_Click(object sender, RoutedEventArgs e) {
+            stockList.Items.Clear();
         }
     }
 }
