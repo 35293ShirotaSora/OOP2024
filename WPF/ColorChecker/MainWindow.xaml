@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="700"
+        Title="ColorChecker" Height="300" Width="700"
         ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -64,10 +64,10 @@
             
 
             <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="15" Margin="10,10,10,0" Background="AliceBlue" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" Margin="10" Background="AliceBlue" SelectionChanged="stockList_SelectionChanged" FontFamily="MS UI Gothic"/>
-            
-            <Button x:Name="clearButton" Grid.Row="2" Margin="10,0,125,10" Content="削除" Click="clearButton_Click"/>
-            <Button x:Name="clearAllButton" Grid.Row="2" Margin="125,0,10,10" Content="全削除" Click="clearAllButton_Click"/>
+            <ListBox x:Name="stockList" Grid.Row="1" Margin="10" Background="WhiteSmoke" SelectionChanged="stockList_SelectionChanged" FontFamily="MS UI Gothic"/>
+
+            <Button x:Name="clearButton" Grid.Row="2" Margin="10,0,125,10" Content="削除" Background="LightGoldenrodYellow" Click="clearButton_Click"/>
+            <Button x:Name="clearAllButton" Grid.Row="2" Margin="125,0,10,10" Content="全削除" Background="Crimson" Click="clearAllButton_Click"/>
         </Grid>
     </Grid>
 </Window>

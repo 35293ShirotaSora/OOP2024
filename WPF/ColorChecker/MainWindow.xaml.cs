@@ -20,17 +20,15 @@ namespace ColorChecker {
     /// </summary>
     public partial class MainWindow : Window {
 
-        MyColor currentColor = new MyColor();
-        /*double r;
-        double g;
-        double b;*/
+        MyColor currentColor;
+        MyColor[] colorsTable;
 
         public MainWindow() {
             InitializeComponent();
             //αチャンネルの初期値設定
             currentColor.Color = Color.FromArgb(255, 0, 0, 0);
 
-            DataContext = GetColorList();
+            DataContext = colorsTable = GetColorList();
 
         }
 
@@ -53,6 +51,16 @@ namespace ColorChecker {
             colorArea.Background = new SolidColorBrush(newColor);*/
 
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+
+            int i;
+            for (i = 0; i < colorsTable.Length; i++) {
+                if (colorsTable[i].Color.Equals(currentColor.Color)) {
+                    currentColor.Name = colorsTable[i].Name;
+                    break;
+                }
+            } 
+            colorSelectComboBox.SelectedIndex = i;
+
             colorArea.Background = new SolidColorBrush(currentColor.Color);
             
 
@@ -67,7 +75,8 @@ namespace ColorChecker {
                 Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value),
                 Name = ""
             };*/
-            currentColor.Name = GetColorList().Where(c => c.Color.Equals(currentColor.Color)).Select(c => c.Name).FirstOrDefault();
+
+            //currentColor.Name = GetColorList().Where(c => c.Color.Equals(currentColor.Color)).Select(c => c.Name).FirstOrDefault();
 
             if (stockList.Items.Contains(currentColor)) {
                 MessageBox.Show("この色はすでにリストに存在します。");
@@ -103,6 +112,7 @@ namespace ColorChecker {
 
             setSliderValue(tempcurrentColor.Color);
             currentColor.Name = tempcurrentColor.Name;
+            
 
         }
 
@@ -116,6 +126,7 @@ namespace ColorChecker {
 
         private void clearAllButton_Click(object sender, RoutedEventArgs e) {
             stockList.Items.Clear();
+            
         }
     }
 }
