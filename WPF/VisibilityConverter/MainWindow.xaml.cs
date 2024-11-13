@@ -25,7 +25,7 @@ namespace VisibilityConverter {
         private void RadioButton_Click(object sender, RoutedEventArgs e) {
             RadioButton selectedRadioButton = (RadioButton)sender;
 
-            switch (selectedRadioButton.Content) {
+            /*switch (selectedRadioButton.Content) {
                 case "赤":
                     Resources["ButtonBrushKey"] = new SolidColorBrush(Colors.Red);
                     break;
@@ -35,7 +35,11 @@ namespace VisibilityConverter {
                 case "緑":
                     Resources["ButtonBrushKey"] = new SolidColorBrush(Colors.Green);
                     break;
-            }
+            }*/
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e) {
