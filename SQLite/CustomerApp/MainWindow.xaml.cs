@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Objects;
+using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,16 @@ namespace CustomerApp {
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(PhoneTextBox.Text) || string.IsNullOrEmpty(AddressTextBox.Text)) {
+                //MessageBox.Show("全て入力してください", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("全て入力してください");
+                return;
+            }
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
+                //Picture = LoadedImage
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -40,7 +47,26 @@ namespace CustomerApp {
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
-            
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if (selectedCustomer == null) {
+                MessageBox.Show("更新する行を選択してください");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(PhoneTextBox.Text) || string.IsNullOrEmpty(AddressTextBox.Text)) {
+                MessageBox.Show("全て入力してください");
+                return;
+            }
+
+            selectedCustomer.Name = NameTextBox.Text;
+            selectedCustomer.Phone = PhoneTextBox.Text;
+            selectedCustomer.Address = AddressTextBox.Text;
+
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Update(selectedCustomer);
+            }
+            ReadDatabase();
         }
       
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -54,6 +80,7 @@ namespace CustomerApp {
                 MessageBox.Show("削除する行を選択してください");
                 return;
             }
+
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Delete(item);
@@ -83,9 +110,32 @@ namespace CustomerApp {
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
             } else {
-                NameTextBox.Clear();
-                PhoneTextBox.Clear();
-                AddressTextBox.Clear();
+                ClearTextbox();
+            }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e) {
+            ClearTextbox();
+            ReadDatabase();
+        }
+
+        private void OpenFileButton_Click(object sender, RoutedEventArgs e) {
+            selectFile();
+        }
+
+        private void ClearTextbox() {
+            NameTextBox.Clear();
+            PhoneTextBox.Clear();
+            AddressTextBox.Clear();
+        }
+
+        private void selectFile() {
+            OpenFileDialog openFileDialog = new OpenFileDialog(); {
+                openFileDialog.Title = "ファイル選択ダイアログ";
+                openFileDialog.Filter = "全てのファイル(*.*)|*.*";
+            }
+            if (openFileDialog.ShowDialog() == true) {
+                LoadedImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
     }
