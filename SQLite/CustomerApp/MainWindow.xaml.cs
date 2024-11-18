@@ -39,8 +39,8 @@ namespace CustomerApp {
             ReadDatabase();
         }
 
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {
-            //ReadDatabase();
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) {
+            
         }
       
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -73,6 +73,20 @@ namespace CustomerApp {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             ReadDatabase();
+        }
+
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+
+            if (selectedCustomer != null) {
+                NameTextBox.Text = selectedCustomer.Name;
+                PhoneTextBox.Text = selectedCustomer.Phone;
+                AddressTextBox.Text = selectedCustomer.Address;
+            } else {
+                NameTextBox.Clear();
+                PhoneTextBox.Clear();
+                AddressTextBox.Clear();
+            }
         }
     }
 }
