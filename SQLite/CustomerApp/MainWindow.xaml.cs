@@ -32,11 +32,26 @@ namespace CustomerApp {
                 MessageBox.Show("全て入力してください");
                 return;
             }
+
+            byte[] imageBytes = null;
+
+            if (LoadedImage.Source != null) {
+                var bitmapImage = LoadedImage.Source as BitmapImage;
+                if (bitmapImage != null) {
+                    using(var memoryStream = new System.IO.MemoryStream()) {
+                        BitmapEncoder encoder = new PngBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                        encoder.Save(memoryStream);
+                        imageBytes = memoryStream.ToArray();
+                    }
+                }
+            }
+
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
-                //Picture = LoadedImage
+                Picture = imageBytes
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -61,6 +76,21 @@ namespace CustomerApp {
             selectedCustomer.Name = NameTextBox.Text;
             selectedCustomer.Phone = PhoneTextBox.Text;
             selectedCustomer.Address = AddressTextBox.Text;
+
+            byte[] imageBytes = null;
+
+            if (LoadedImage.Source != null) {
+                var bitmapImage = LoadedImage.Source as BitmapImage;
+                if (bitmapImage != null) {
+                    using (var memoryStream = new System.IO.MemoryStream()) {
+                        BitmapEncoder encoder = new PngBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                        encoder.Save(memoryStream);
+                        imageBytes = memoryStream.ToArray();
+                    }
+                }
+            }
+            selectedCustomer.Picture = imageBytes;
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
@@ -94,6 +124,18 @@ namespace CustomerApp {
                 connection.CreateTable<Customer>();
                 _customers = connection.Table<Customer>().ToList();
 
+                foreach (var customer in _customers) {
+                    if (customer.Picture != null && customer.Picture.Length > 0) {
+                        using (var memoryStream = new System.IO.MemoryStream(customer.Picture)) {
+                            var bitmapImage = new BitmapImage();
+                            bitmapImage.BeginInit();
+                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmapImage.StreamSource = memoryStream;
+                            bitmapImage.EndInit();
+                            customer.PictureSource = bitmapImage;
+                        }
+                    }
+                }
                 CustomerListView.ItemsSource = _customers;
             }
         }
@@ -109,18 +151,25 @@ namespace CustomerApp {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
+
+                if (selectedCustomer.PictureSource != null) {
+                    LoadedImage.Source = selectedCustomer.PictureSource;
+                } else {
+                    LoadedImage.Source = null;
+                }
             } else {
                 ClearTextbox();
+                LoadedImage.Source = null;
             }
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e) {
+        private void AllClearButton_Click(object sender, RoutedEventArgs e) {
             ClearTextbox();
             ReadDatabase();
         }
 
         private void OpenFileButton_Click(object sender, RoutedEventArgs e) {
-            selectFile();
+            SelectFile();
         }
 
         private void ClearTextbox() {
@@ -129,7 +178,7 @@ namespace CustomerApp {
             AddressTextBox.Clear();
         }
 
-        private void selectFile() {
+        private void SelectFile() {
             OpenFileDialog openFileDialog = new OpenFileDialog(); {
                 openFileDialog.Title = "ファイル選択ダイアログ";
                 openFileDialog.Filter = "全てのファイル(*.*)|*.*";
@@ -137,6 +186,10 @@ namespace CustomerApp {
             if (openFileDialog.ShowDialog() == true) {
                 LoadedImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
+        }
+
+        private void ImageClearButton_Click(object sender, RoutedEventArgs e) {
+            LoadedImage.Source = null;
         }
     }
 }

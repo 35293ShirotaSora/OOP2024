@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace CustomerApp.Objects {
     public class Customer {
@@ -25,10 +26,12 @@ namespace CustomerApp.Objects {
         /// <summary>
         /// 画像
         /// </summary>
-        //public Image Picture { get; set; }
+        public byte[] Picture { get; set; }
+        [Ignore]
+        public BitmapImage PictureSource { get; set; }
 
         public override string ToString() {
-            return $"{Id} {Name} {Phone} {Address}";
+            return $"{Id} {Name} {Phone} {Address} {Picture}";
         }
     }
 }
