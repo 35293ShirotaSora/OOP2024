@@ -27,9 +27,9 @@ namespace CustomerApp {
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(PhoneTextBox.Text) || string.IsNullOrEmpty(AddressTextBox.Text)) {
-                //MessageBox.Show("全て入力してください", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
-                MessageBox.Show("全て入力してください");
+            if (string.IsNullOrEmpty(NameTextBox.Text)) {
+                //MessageBox.Show("名前が未入力です", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("名前を入力する必要があります");
                 return;
             }
 
@@ -102,20 +102,27 @@ namespace CustomerApp {
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
             var filterList = _customers.Where(x=>x.Name.Contains(SearchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = filterList;
+            SearchTextBox.Clear();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+
             var item = CustomerListView.SelectedItem as Customer;
             if (item == null) {
                 MessageBox.Show("削除する行を選択してください");
                 return;
             }
 
-            using(var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
-                connection.Delete(item);
+            var result = MessageBox.Show("本当に削除しますか?", "削除確認", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                ReadDatabase();
+            if (result == MessageBoxResult.Yes) {
+                using (var connection = new SQLiteConnection(App.databasePass)) {
+                    connection.CreateTable<Customer>();
+                    connection.Delete(item);
+                    ReadDatabase();
+                }
+            } else {
+                return;
             }
         }
 
