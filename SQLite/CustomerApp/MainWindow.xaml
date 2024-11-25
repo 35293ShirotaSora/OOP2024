@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="顧客管理" Height="390" Width="700" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="顧客管理" Height="390" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3.5*"/>
-            <ColumnDefinition Width="6.5*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10,10,10,34">
             <Grid>
@@ -53,13 +53,13 @@
                 <TextBox x:Name="SearchTextBox" FontSize="15" TextChanged="SearchTextBox_TextChanged" Grid.Column="1" Margin="2"/>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="10,10,10,34">
+        <StackPanel Grid.Column="1" Margin="10,10,20,34">
             <Grid Background="WhiteSmoke" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2.5*"/>
-                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"/>
                 <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"/>
@@ -70,23 +70,22 @@
                 <TextBlock Text="住所" Grid.Column="2" HorizontalAlignment="Center" FontSize="13"/>
                 <TextBlock Text="画像" Grid.Column="3" HorizontalAlignment="Center" FontSize="13"/>
             </Grid>
-            <ListView x:Name="CustomerListView" Grid.Column="1" Height="284" Width="435" SelectionChanged="CustomerListView_SelectionChanged" SelectionMode="Single" Background="GhostWhite">
+            <ListView x:Name="CustomerListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Height="284" Width="530" SelectionChanged="CustomerListView_SelectionChanged" SelectionMode="Single" Background="GhostWhite">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <StackPanel Width="435">
+                            <StackPanel Width="530">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2.5*"/>
-                                        <ColumnDefinition Width="4*"/>
                                         <ColumnDefinition Width="1.5*"/>
-                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Name}" FontSize="15" Grid.Column="0" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Phone}" FontSize="15" Foreground="Blue" Grid.Column="1" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Address}" FontSize="15" Foreground="Green" Grid.Column="2" VerticalAlignment="Center"/>
-                                    <Image Source="{Binding PictureSource}" Width="35" Height="35" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                    <Image Source="{Binding PictureSource}" Width="75" Height="75" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,20,0"/>
                                 </Grid>
                             </StackPanel>
                         </Grid>
